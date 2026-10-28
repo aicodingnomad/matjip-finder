@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>할로윈 맛집·술집</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎃</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<!-- 디자인: Google Stitch로 생성한 할로윈 테마(DESIGN.md 참고)를 옮겨온 것 -->
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🎃</span>
+      <div>
+        <h1>할로윈 맛집·술집</h1>
+        <p class="brand-sub">심야 핫플 &amp; 호러 바 탐색</p>
+      </div>
+    </div>
+
+    <form id="search-form" class="search" autocomplete="off">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input id="address" type="search" placeholder="주소나 장소 입력 (예: 강남역)" />
+        <button type="submit" class="btn primary">검색</button>
+      </div>
+      <button type="button" id="locate" class="btn ghost" title="현재 위치로 찾기">📍 내 위치 탐색</button>
+    </form>
+
+    <div class="controls">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-type="all">전체</button>
+        <button class="tab" data-type="food">🍽️ 맛집</button>
+        <button class="tab" data-type="bar">🍺 술집</button>
+      </div>
+      <label class="radius">
+        <span aria-hidden="true">🧭</span>
+        <span class="sr-only">반경</span>
+        <select id="radius">
+          <option value="300">반경 300m</option>
+          <option value="500">반경 500m</option>
+          <option value="1000" selected>반경 1km</option>
+          <option value="2000">반경 2km</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <div class="panel-head">
+        <div id="status" class="status">🕯️ 내 위치 탐색 버튼을 누르거나 주소를 입력해 주세요.</div>
+        <div id="chips" class="chips"></div>
+      </div>
+      <ul id="list" class="list"></ul>
+    </aside>
+
+    <section class="map-wrap">
+      <div id="map" class="map"></div>
+      <div class="moon" aria-hidden="true">
+        <span class="bat bat-1">🦇</span>
+        <span class="bat bat-2">🦇</span>
+      </div>
+      <div class="web" aria-hidden="true">🕸️</div>
+      <div class="legend">
+        <span><i class="dot food"></i>맛집</span>
+        <span class="sep"></span>
+        <span><i class="dot bar"></i>술집</span>
+        <span class="sep"></span>
+        <span>지도를 클릭하면 그곳에서 재검색</span>
+      </div>
+    </section>
+  </main>
+
+  <footer id="credit" class="credit"></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
